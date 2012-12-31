@@ -22,4 +22,5 @@
 /dev/ttyHSUSB1                                 0600    system  system
 # for autobot car pc
 /dev/ttyHSUSB3                                 0660    autobot_access autobot_access
+/dev/genlock              0666   root       root
 
