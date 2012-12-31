@@ -47,7 +47,7 @@ BOARD_HAVE_HTC_AUDIO := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := villec2
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
+BOARD_USES_LEGACY_RIL := true
 
 # Bluetooth/Wifi
 -include device/htc/msm8660-common/bcmdhd.mk
