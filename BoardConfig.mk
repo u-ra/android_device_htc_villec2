@@ -20,17 +20,11 @@
 # definition file).
 #
 
-# WARNING: This line must come *before* including the proprietary
-# variant, so that it gets overwritten by the parent (which goes
-# against the traditional rules of inheritance).
-
-# inherit from common msm8660
--include device/htc/msm8660-common/BoardConfigCommon.mk
-
-# Target
-TARGET_NO_RADIOIMAGE := true
+BOARD_VENDOR := htc
 
 # Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 TARGET_BOOTLOADER_BOARD_NAME := villec2
 
 # Kernel
@@ -40,17 +34,59 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=villec2 no_console_
 TARGET_KERNEL_CONFIG := villec2_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/villec2
 
+# Board
+TARGET_BOARD_PLATFORM := msm8660
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+BOARD_USES_QCOM_HARDWARE := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+
+# Architecture
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_SMP := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
 # Audio
+COMMON_GLOBAL_CFLAGS += -DHTC_ACOUSTIC_AUDIO -DLEGACY_QCOM_VOICE
 BOARD_HAVE_HTC_AUDIO := true
 
+# Camera
+CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DNO_UPDATE_PREVIEW
+BOARD_HAVE_HTC_FFC := true
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+TARGET_DISABLE_ARM_PIE := true
+
+# Graphics
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
+USE_OPENGL_RENDERER := true
+TARGET_NO_HW_VSYNC := true
+TARGET_USES_C2D_COMPOSITION := true
+BOARD_EGL_CFG := device/htc/villec2/configs/egl.cfg
+BOARD_USE_LEGACY_TOUCHSCREEN := true
+TARGET_USES_ION := true
+
+# Filesystem
+BOARD_VOLD_MAX_PARTITIONS := 36
+
+# FM Radio
+BOARD_HAVE_QCOM_FM := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_FM_ENABLED
+
 # GPS
+BOARD_USES_QCOM_GPS := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := villec2
+
+# Lights
+TARGET_PROVIDES_LIBLIGHTS := true
 
 # RIL
 BOARD_USES_LEGACY_RIL := true
 
 # Bluetooth/Wifi
--include device/htc/msm8660-common/bcmdhd.mk
+-include device/htc/villec2/bcmdhd.mk
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -63,8 +99,6 @@ BOARD_FLASH_BLOCK_SIZE := 262144
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 
-# Display
-BOARD_USE_LEGACY_TOUCHSCREEN := true
-CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
-TARGET_USES_ION := true
-
+# Webkit
+ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true

@@ -18,7 +18,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # common msm8660 configs
-$(call inherit-product, device/htc/msm8660-common/msm8660.mk)
+$(call inherit-product, device/htc/villec2/msm8660.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/villec2/overlay
 
@@ -45,7 +45,7 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt
 
 # QC thermald config
-PRODUCT_COPY_FILES += device/htc/msm8960-common/configs/thermald.conf:system/etc/thermald.conf
+PRODUCT_COPY_FILES += device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
 
 # Some misc configuration files
 PRODUCT_COPY_FILES += \
@@ -116,7 +116,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 # Bluetooth firmware
-$(call inherit-product, device/htc/msm8660-common/bcm_hcd.mk)
+$(call inherit-product, device/htc/villec2/bcm_hcd.mk)
 
 ## misc
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -146,5 +146,5 @@ $(call inherit-product, device/htc/villec2/media_htcaudio.mk)
 PRODUCT_DEVICE := villec2
 PRODUCT_NAME := villec2
 PRODUCT_BRAND := htc
-PRODUCT_MODEL := One S S3
+PRODUCT_MODEL := One S C2
 PRODUCT_MANUFACTURER := HTC
