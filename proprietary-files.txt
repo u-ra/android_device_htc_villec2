@@ -10,6 +10,7 @@ bin/rmt_storage
 bin/thermald
 bin/zchgd
 etc/agps_rm
+etc/calibration
 etc/firmware/fw_bcm4330_apsta_b2.bin
 etc/firmware/vidc_1080p.fw
 etc/firmware/leia_pfp_470.fw
