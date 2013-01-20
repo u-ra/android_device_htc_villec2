@@ -14,10 +14,9 @@
 /dev/pmem               0660    system      graphics
 
 # camera
+/dev/video*             0660    system      camera
 /dev/gemini0            0660    system      camera
 /dev/msm_camera/*       0660    system      camera
-/dev/pmem_smipool*      0660    system      camera
-/dev/pmem_camera*       0660    system      camera
 
 # DIAG device node is world readable/writable
 /dev/diag               0666    root        root
