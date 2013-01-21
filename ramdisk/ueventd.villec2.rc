@@ -23,8 +23,12 @@
 /dev/diag               0666    root        root
 
 # sensors
-/dev/akm8975_daemon     0640    compass     system
-/dev/akm8975_aot        0640    compass     system
+/dev/akm8973_aot        0640    compass     system
+/dev/akm8973_daemon     0640    compass     system
+/dev/akm8976_aot        0640    compass     system
+/dev/akm8976_daemon     0640    compass     system
+/dev/akm8976_pffd       0640    compass     system
+/dev/bma150             0640    compass     system
 /dev/cm3602             0640    compass     system
 /dev/lightsensor        0640    system      system
 /dev/mpu                0664    system      system
