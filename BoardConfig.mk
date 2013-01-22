@@ -74,6 +74,7 @@ TARGET_USES_OVERLAY := true
 
 # Filesystem
 BOARD_VOLD_MAX_PARTITIONS := 36
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 
 # FM Radio
 BOARD_HAVE_QCOM_FM := true
