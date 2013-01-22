@@ -39,6 +39,7 @@ lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libbt-aptx-4.0.3.so
 lib/libC2D2.so
+lib/libcamera_client.so
 lib/libcameraface.so
 lib/libcamerapp.so
 lib/libcam_oem_plugin.so
@@ -79,3 +80,5 @@ lib/libqc-opt.so
 lib/libqdp.so
 lib/libqmi.so
 lib/libsc-a2xx.so
+lib/libwvm.so
+lib/libWVStreamControlAPI_L3.so
