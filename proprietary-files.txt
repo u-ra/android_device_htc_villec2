@@ -1,3 +1,5 @@
+bin/awb_camera
+bin/btld
 bin/cand
 bin/charging
 bin/htcbatt
@@ -34,6 +36,7 @@ lib/libacdbloader.so
 lib/libacdbmapper.so
 lib/libaudcal.so
 lib/libaudioalsa.so
+lib/libbt-aptx-4.0.3.so
 lib/libC2D2.so
 lib/libcamera_client.so
 lib/libcameraface.so
