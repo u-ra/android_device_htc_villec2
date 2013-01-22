@@ -1,6 +1,8 @@
+bin/awb_camera
 bin/cand
 bin/charging
 bin/htcbatt
+bin/hostapd
 bin/mm-qcamera-daemon
 bin/mpdecision
 bin/netmgrd
@@ -35,7 +37,6 @@ lib/libacdbmapper.so
 lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libC2D2.so
-lib/libcamera_client.so
 lib/libcameraface.so
 lib/libcamerapp.so
 lib/libcam_oem_plugin.so
@@ -76,5 +77,3 @@ lib/libqc-opt.so
 lib/libqdp.so
 lib/libqmi.so
 lib/libsc-a2xx.so
-lib/libwvm.so
-lib/libWVStreamControlAPI_L3.so
