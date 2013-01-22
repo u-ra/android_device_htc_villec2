@@ -2,7 +2,7 @@
 /dev/cpu_dma_latency    0660    system      system
 
 # oncrpc
-/dev/oncrpc/*           0660    root        qcom_oncrpc
+/dev/oncrpc/*           0666    root        qcom_oncrpc
 
 # gpu driver for adreno200 is globally accessible
 /dev/graphics/*         0660    root        graphics
