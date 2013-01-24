@@ -93,12 +93,6 @@ PRODUCT_COPY_FILES += \
     device/htc/villec2/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/htc/villec2/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# MSM8660 firmware
-PRODUCT_COPY_FILES += \
-    device/htc/villec2/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
-    device/htc/villec2/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
-    device/htc/villec2/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw
-
 # Thermal configuration
 PRODUCT_COPY_FILES += \
     device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
