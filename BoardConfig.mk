@@ -71,6 +71,7 @@ TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/htc/villec2/configs/egl.cfg
 TARGET_USES_ION := true
 TARGET_USES_OVERLAY := true
+TARGET_NO_HW_VSYNC := true
 
 # Filesystem
 BOARD_VOLD_MAX_PARTITIONS := 36
