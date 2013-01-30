@@ -143,7 +143,7 @@ $(call inherit-product, device/htc/villec2/media_a1026.mk)
 $(call inherit-product, device/htc/villec2/media_htcaudio.mk)
 
 # call dalvik heap config
-$(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # Discard inherited values and use our own instead.
 PRODUCT_DEVICE := villec2
