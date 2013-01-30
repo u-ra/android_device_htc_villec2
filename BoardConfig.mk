@@ -54,13 +54,9 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Audio
-<<<<<<< HEAD
-COMMON_GLOBAL_CFLAGS += -DWITH_QCOM_LPA
 TARGET_USES_QCOM_LPA := true
-=======
 BOARD_HAVE_HTC_AUDIO := true
 BOARD_USES_ALSA_AUDIO := true
->>>>>>> 91ade2a11fdf70ad6920c5e94536d79442bcfe8b
 
 # Camera
 CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
