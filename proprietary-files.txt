@@ -25,13 +25,17 @@ lib/libbt-aptx-4.1.1.so
 # Camera
 bin/awb_camera
 lib/hw/camera.msm8660.so
+lib/libBeautyChat.so
 lib/libcamera_client.so
 lib/libcameraface.so
 lib/libcamerapp.so
 lib/libcam_oem_plugin.so
 lib/libgemini.so
 lib/libidl.so
+lib/libimage-jpeg-enc-omx-comp.so
+lib/libimage-omx-common.so
 lib/libmmcamera_frameproc.so
+lib/libmmcamera_interface2.so
 lib/libmmcamera_rawchipproc.so
 lib/libmmcamera_statsproc31.so
 lib/libmmipl.so
