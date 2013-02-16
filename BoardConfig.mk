@@ -29,6 +29,7 @@ TARGET_BOOTLOADER_BOARD_NAME := villec2
 
 # Kernel
 BOARD_KERNEL_BASE := 0x48000000
+BOARD_FORCE_RAMDISK_ADDRESS := 0x49400000
 BOARD_KERNEL_PAGE_SIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=villec2 no_console_suspend=1
 TARGET_KERNEL_CONFIG := villec2_defconfig
