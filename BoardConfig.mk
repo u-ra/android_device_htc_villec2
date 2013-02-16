@@ -92,9 +92,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := villec2
 # Lights
 TARGET_PROVIDES_LIBLIGHTS := true
 
-# RIL
-BOARD_USES_LEGACY_RIL := true
-
 # Bluetooth/Wifi
 -include device/htc/villec2/bcmdhd.mk
 
