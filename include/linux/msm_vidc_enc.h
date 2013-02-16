@@ -411,10 +411,10 @@ struct venc_msg{
 };
 struct venc_recon_addr{
 /* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+ unsigned char *pbuffer;
  unsigned long buffer_size;
  unsigned long pmem_fd;
  unsigned long offset;
- unsigned char *pbuffer;
 /* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
 };
 struct venc_recon_buff_size{
