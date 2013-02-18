@@ -18,10 +18,6 @@ bin/rmt_storage
 bin/thermald
 bin/zchgd
 
-# Bluetooth
-bin/btld
-lib/libbt-aptx-4.1.1.so
-
 # Camera
 bin/awb_camera
 lib/hw/camera.msm8660.so
