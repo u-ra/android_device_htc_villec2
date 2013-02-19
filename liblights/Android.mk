@@ -14,7 +14,7 @@
 
 LOCAL_PATH:= $(call my-dir)
 
-ifeq ($(TARGET_PROVIDES_LIBLIGHT),true)
+ifeq ($(TARGET_PROVIDES_LIBLIGHTS),true)
 ifeq ($(BOARD_VENDOR),htc)
 ifeq ($(TARGET_BOARD_PLATFORM),msm8660)
 
