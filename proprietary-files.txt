@@ -29,7 +29,6 @@ lib/libcameraface.so
 lib/libcamerapp.so
 lib/libcam_oem_plugin.so
 lib/libgemini.so
-lib/libidl.so
 lib/libimage-jpeg-enc-omx-comp.so
 lib/libimage-omx-common.so
 lib/libmmcamera_frameproc.so
