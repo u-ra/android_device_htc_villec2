@@ -22,6 +22,8 @@ bin/zchgd
 bin/awb_camera
 lib/hw/camera.msm8660.so
 lib/libBeautyChat.so
+lib/libHTC_DIS.so
+lib/libcameraasd.so
 lib/libcamera_client.so
 lib/libcameraface.so
 lib/libcamerapp.so
