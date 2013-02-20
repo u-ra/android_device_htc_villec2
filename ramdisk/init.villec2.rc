@@ -221,6 +221,11 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 #    user root
 #    oneshot
 
+service qcamerasvr /system/bin/mm-qcamera-daemon
+    class main
+    user system
+    group system camera inet
+
 service qmuxd /system/bin/qmuxd
     class main
     user radio
