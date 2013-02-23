@@ -20,26 +20,20 @@ bin/zchgd
 
 # Camera
 bin/awb_camera
-lib/hw/camera.msm8660.so
-lib/libBeautyChat.so
-lib/libHTC_DIS.so
-lib/libcameraasd.so
-lib/libcamera_client.so
 lib/libcameraface.so
 lib/libcamerapp.so
 lib/libcam_oem_plugin.so
+lib/libDxOAF.so
 lib/libgemini.so
-lib/libimage-jpeg-enc-omx-comp.so
-lib/libimage-omx-common.so
 lib/libmmcamera_frameproc.so
-lib/libmmcamera_interface2.so
 lib/libmmcamera_rawchipproc.so
-lib/libmmcamera_statsproc31.so
+lib/libmmcamera_statsproc30.so
 lib/libmmipl.so
 lib/libmmjpeg.so
-lib/libmmstillomx.so
+lib/libmmmpo.so
+lib/libmmstereo.so
 lib/liboemcamera.so
-lib/libOlaEngineNew.so
+lib/libOlaEngine.so
 lib/libposteffect.so
 
 # Chromatix
