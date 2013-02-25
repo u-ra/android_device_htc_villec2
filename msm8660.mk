@@ -43,6 +43,10 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8660 \
     libaudioutils
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8660
+
 # GPS
 PRODUCT_COPY_FILES += \
     device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
