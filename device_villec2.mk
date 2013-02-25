@@ -54,7 +54,6 @@ PRODUCT_COPY_FILES += \
 # Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
 	device/htc/villec2/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
-	device/htc/villec2/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
 	device/htc/villec2/keylayout/cy8c-touchkey.kl:system/usr/keylayout/cy8c-touchkey.kl \
 	device/htc/villec2/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
 	device/htc/villec2/keylayout/projector-Keypad.kl:system/usr/keylayout/projector-Keypad.kl \
@@ -63,8 +62,6 @@ PRODUCT_COPY_FILES += \
 # Input device config
 PRODUCT_COPY_FILES += \
 	device/htc/villec2/idc/projector_input.idc:system/usr/idc/projector_input.idc \
-	device/htc/villec2/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
-	device/htc/villec2/idc/qwerty.idc:system/usr/idc/qwerty.idc \
 	device/htc/villec2/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc
 
 # HTC BT Audio tune
