@@ -1,3 +1,5 @@
+key 211   FOCUS
+key 212   CAMERA
 key 116   POWER             WAKE_DROPPED
 key 114   VOLUME_DOWN       WAKE
 key 115   VOLUME_UP         WAKE
@@ -7,11 +9,3 @@ key 158   BACK
 key 217   SEARCH
 
 key 107   ENDCALL           WAKE_DROPPED
-
-# LCM 2D/3D switch
-key 193   FUNC_2
-key 194   FUNC_1
-
-# CAMERA
-key 211   FOCUS
-key 212   CAMERA
