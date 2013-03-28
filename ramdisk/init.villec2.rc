@@ -176,7 +176,7 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
 
 service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable_hci \
         --tosleep 50000 --baudrate 3000000 --use_baudrate_for_download \
-        --patchram /vendor/firmware/bcm4329.hcd /dev/ttyHS0
+        --patchram /system/etc/firmware/BCM4330B1_002.001.003.0833.0845.hcd /dev/ttyHS0
     class main
     user bluetooth
     group bluetooth net_bt_admin
