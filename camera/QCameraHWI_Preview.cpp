@@ -126,7 +126,7 @@ status_t QCameraStream_preview::getBufferFromSurface() {
      goto end;
     }
     err = mPreviewWindow->set_usage(mPreviewWindow,
-        GRALLOC_USAGE_PRIVATE_MM_HEAP |
+        GRALLOC_USAGE_PRIVATE_CAMERA_HEAP |
         GRALLOC_USAGE_PRIVATE_IOMMU_HEAP |
         GRALLOC_USAGE_PRIVATE_UNCACHED);
 	if(err != 0) {

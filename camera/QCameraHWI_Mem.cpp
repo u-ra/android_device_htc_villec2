@@ -391,7 +391,7 @@ IonPool::IonPool(int flags,
     // mAlignedBufferSize is already in 4k aligned.
     mAlignedSize = mAlignedBufferSize * num_buffers;
     sp<MemoryHeapIon> ionHeap = new MemoryHeapIon(mIonDevName, mAlignedSize,
-                    flags, (0x1<<ION_CP_MM_HEAP_ID|0x1<<ION_IOMMU_HEAP_ID));
+                    flags, (0x1<<ION_CAMERA_HEAP_ID|0x1<<ION_IOMMU_HEAP_ID));
     if (ionHeap->getHeapID() >= 0) {
         mHeap = ionHeap;
         ionHeap.clear();

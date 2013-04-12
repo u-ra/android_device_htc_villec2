@@ -4069,7 +4069,7 @@ bool QualcommCameraHardware::initRawSnapshot()
 bool QualcommCameraHardware::initZslBuffers(bool initJpegHeap){
     ALOGE("Init ZSL buffers E");
     const char * pmem_region;
-    int ion_heap = ION_CP_MM_HEAP_ID;
+    int ion_heap = ION_CAMERA_HEAP_ID;
     int postViewBufferSize;
 
     mPostviewWidth = mDimension.display_width;
@@ -4260,7 +4260,7 @@ bool QualcommCameraHardware::createSnapshotMemory (int numberOfRawBuffers, int n
 {
     char * pmem_region;
     int ret;
-    int ion_heap = ION_CP_MM_HEAP_ID;
+    int ion_heap = ION_CAMERA_HEAP_ID;
     if(mCurrentTarget == TARGET_MSM8660) {
        pmem_region = "/dev/pmem_smipool";
     } else {
@@ -6850,7 +6850,7 @@ uint8_t *mm_camera_do_mmap(uint32_t size, int *pmemFd)
 bool QualcommCameraHardware::initRecord()
 {
     const char *pmem_region;
-    int ion_heap = ION_CP_MM_HEAP_ID;
+    int ion_heap = ION_CAMERA_HEAP_ID;
     int CbCrOffset;
     int recordBufferSize;
 	int active, type =0;
