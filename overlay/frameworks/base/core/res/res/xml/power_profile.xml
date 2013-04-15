@@ -40,7 +40,7 @@
     <item name="dsp.audio">0</item>
     <item name="dsp.video">0</item>
     <item name="radio.talk">48.6</item>
-    <item name="radio.active">231000</item>
+    <item name="radio.active">300</item>
     <item name="gps.on">26.69</item>
     <item name="battery.capacity">1651</item>
     <item name="radio.scanning">14.4</item>
@@ -78,3 +78,4 @@
         <value>46</value>
     </array>
 </device>
+
