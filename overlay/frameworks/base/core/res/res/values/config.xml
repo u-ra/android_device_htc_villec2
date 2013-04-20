@@ -21,6 +21,10 @@
      for different hardware and product builds. -->
 <resources>
 
+    <!-- Boolean indicating if current platform supports quick switch-on/off of
+         Bluetooth module -->
+    <bool name="config_bluetooth_adapter_quick_switch">false</bool>
+
     <!-- Default color for notification LED is green. -->
     <color name="config_defaultNotificationColor">#ff00ff00</color>
 
@@ -142,7 +146,8 @@
          USB interfaces.  If the device doesn't want to support tething over USB this should
          be empty.  An example would be "usb.*" -->
     <string-array translatable="false" name="config_tether_usb_regexs">
-	    <item>"usb\\d"</item>
+        <item>"usb\\d"</item>
+        <item>"rndis\\d"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
