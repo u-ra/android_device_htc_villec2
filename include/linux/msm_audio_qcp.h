@@ -19,11 +19,11 @@
 #ifndef __MSM_AUDIO_QCP_H
 #define __MSM_AUDIO_QCP_H
 #include <linux/msm_audio.h>
-#define AUDIO_SET_QCELP_ENC_CONFIG _IOW(AUDIO_IOCTL_MAGIC,   0, struct msm_audio_qcelp_enc_config)
+#define AUDIO_SET_QCELP_ENC_CONFIG _IOW(AUDIO_IOCTL_MAGIC, 0, struct msm_audio_qcelp_enc_config)
 /* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
-#define AUDIO_GET_QCELP_ENC_CONFIG _IOR(AUDIO_IOCTL_MAGIC,   1, struct msm_audio_qcelp_enc_config)
-#define AUDIO_SET_EVRC_ENC_CONFIG _IOW(AUDIO_IOCTL_MAGIC,   2, struct msm_audio_evrc_enc_config)
-#define AUDIO_GET_EVRC_ENC_CONFIG _IOR(AUDIO_IOCTL_MAGIC,   3, struct msm_audio_evrc_enc_config)
+#define AUDIO_GET_QCELP_ENC_CONFIG _IOR(AUDIO_IOCTL_MAGIC, 1, struct msm_audio_qcelp_enc_config)
+#define AUDIO_SET_EVRC_ENC_CONFIG _IOW(AUDIO_IOCTL_MAGIC, 2, struct msm_audio_evrc_enc_config)
+#define AUDIO_GET_EVRC_ENC_CONFIG _IOR(AUDIO_IOCTL_MAGIC, 3, struct msm_audio_evrc_enc_config)
 #define CDMA_RATE_BLANK 0x00
 /* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
 #define CDMA_RATE_EIGHTH 0x01

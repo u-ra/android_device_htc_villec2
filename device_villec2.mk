@@ -102,6 +102,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
+# Adreno Drivers
+PRODUCT_COPY_FILES += \
+    device/htc/villec2/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
+    device/htc/villec2/firmware/a225_pm4.fw:system/etc/firmware/a225_pm4.fw \
+    device/htc/villec2/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
+    device/htc/villec2/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
+    device/htc/villec2/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw
+
 ## misc
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \

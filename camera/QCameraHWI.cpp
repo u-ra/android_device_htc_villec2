@@ -342,6 +342,11 @@ void QCameraHardwareInterface::release()
     default:
         break;
     }
+    // when camera is released,
+    // we need to set preview window to NULL
+    // to trigger returning buffers to surface if it's not done yet
+    if(mStreamDisplay)
+        mStreamDisplay->setPreviewWindow(NULL);
 #if 0
     if (isRecordingRunning()) {
         stopRecordingInternal();
@@ -1093,6 +1098,7 @@ status_t QCameraHardwareInterface::startPreview2()
         ret =  mStreamSnap->start();
         if (MM_CAMERA_OK != ret){
             ALOGE("%s: error - can't start Snapshot stream!", __func__);
+            mStreamDisplay->stop();
             return BAD_VALUE;
         }
     }else{
@@ -1984,99 +1990,6 @@ void QCameraHardwareInterface::zoomEvent(cam_ctrl_status_t *status, app_notify_c
     ALOGI("zoomEvent: X");
 }
 
-/* This is temporary solution to hide the garbage screen seen during
-   snapshot between the time preview stops and postview is queued to
-   overlay for display. We won't have this problem after honeycomb.*/
-status_t QCameraHardwareInterface::storePreviewFrameForPostview(void)
-{
-    int width = 0;  /* width of channel  */
-    int height = 0; /* height of channel */
-    uint32_t frame_len = 0; /* frame planner length */
-    int buffer_num = 4; /* number of buffers for display */
-    status_t ret = NO_ERROR;
-    struct msm_frame *preview_frame;
-    unsigned long buffer_addr = 0;
-    uint32_t planes[VIDEO_MAX_PLANES];
-    uint8_t num_planes = 0;
-
-    ALOGI("%s: E", __func__);
-
-    if (mStreamDisplay == NULL) {
-        ret = FAILED_TRANSACTION;
-        goto end;
-    }
-
-    mPostPreviewHeap = NULL;
-    /* get preview size */
-    getPreviewSize(&width, &height);
-    ALOGE("%s: Preview Size: %d X %d", __func__, width, height);
-
-    frame_len = mm_camera_get_msm_frame_len(getPreviewFormat(),
-                                            myMode,
-                                            width,
-                                            height,
-                                            OUTPUT_TYPE_P,
-                                            &num_planes,
-                                            planes);
-
-    ALOGE("%s: Frame Length calculated: %d", __func__, frame_len);
-#ifdef USE_ION
-    mPostPreviewHeap =
-        new IonPool( MemoryHeapBase::READ_ONLY | MemoryHeapBase::NO_CACHING,
-                     frame_len,
-                     1,
-                     frame_len,
-                     planes[0],
-                     0,
-                     "thumbnail");
-#else
-    mPostPreviewHeap =
-        new PmemPool("/dev/pmem_adsp",
-                     MemoryHeapBase::READ_ONLY | MemoryHeapBase::NO_CACHING,
-                     MSM_PMEM_THUMBNAIL,
-                     frame_len,
-                     1,
-                     frame_len,
-                     planes[0],
-                     0,
-                     "thumbnail");
-#endif
-    if (!mPostPreviewHeap->initialized()) {
-        ALOGE("%s: Error initializing mPostPreviewHeap buffer", __func__);
-        ret = NO_MEMORY;
-        goto end;
-    }
-
-    ALOGE("%s: Get last queued preview frame", __func__);
-    preview_frame = (struct msm_frame *)mStreamDisplay->getLastQueuedFrame();
-    if (preview_frame == NULL) {
-        ALOGE("%s: Error retrieving preview frame.", __func__);
-        ret = FAILED_TRANSACTION;
-        goto end;
-    }
-    ALOGE("%s: Copy the frame buffer. buffer: %x  preview_buffer: %x",
-         __func__, (uint32_t)mPostPreviewHeap->mBuffers[0]->pointer(),
-         (uint32_t)preview_frame->buffer);
-
-    /* Copy the frame */
-    memcpy((void *)mPostPreviewHeap->mHeap->base(),
-               (const void *)preview_frame->buffer, frame_len );
-
-    ALOGE("%s: Queue the buffer for display.", __func__);
-#if 0 // mzhu
-    mOverlayLock.lock();
-    if (mOverlay != NULL) {
-        mOverlay->setFd(mPostPreviewHeap->mHeap->getHeapID());
-        mOverlay->queueBuffer((void *)0);
-    }
-    mOverlayLock.unlock();
-#endif //mzhu
-
-end:
-    ALOGI("%s: X", __func__);
-    return ret;
-}
-
 void QCameraHardwareInterface::dumpFrameToFile(const void * data, uint32_t size, char* name, char* ext, int index)
 {
     char buf[64];
@@ -2175,7 +2088,7 @@ void QCameraHardwareInterface::dumpFrameToFile(struct msm_frame* newFrame,
 status_t QCameraHardwareInterface::setPreviewWindow(preview_stream_ops_t* window)
 {
     status_t retVal = NO_ERROR;
-    ALOGE(" %s: E mPreviewState = %d, mStreamDisplay = 0x%p", __FUNCTION__, mPreviewState, mStreamDisplay);
+    ALOGE(" %s: E mPreviewState = %d, mStreamDisplay = %p", __FUNCTION__, mPreviewState, mStreamDisplay);
     if( window == NULL) {
         ALOGE("%s:Received Setting NULL preview window", __func__);
     }
@@ -2199,6 +2112,7 @@ status_t QCameraHardwareInterface::setPreviewWindow(preview_stream_ops_t* window
         //retVal = UNKNOWN_ERROR;
         break;
     case QCAMERA_HAL_PREVIEW_STOPPED:
+    case QCAMERA_HAL_TAKE_PICTURE:
         mPreviewWindow = window;
         ALOGE("%s: mPreviewWindow = 0x%p, mStreamDisplay = 0x%p",
                                     __func__, mPreviewWindow, mStreamDisplay);
@@ -2226,7 +2140,7 @@ int QCameraHardwareInterface::allocate_ion_memory(QCameraHalHeap_t *p_camera_mem
   int rc = 0;
   struct ion_handle_data handle_data;
 
-  p_camera_memory->main_ion_fd[cnt] = open("/dev/ion", O_RDONLY | O_DSYNC);
+  p_camera_memory->main_ion_fd[cnt] = open("/dev/ion", O_RDONLY);
   if (p_camera_memory->main_ion_fd[cnt] < 0) {
     ALOGE("Ion dev open failed\n");
     ALOGE("Error is %s\n", strerror(errno));
@@ -2260,6 +2174,27 @@ ION_ALLOC_FAILED:
   close(p_camera_memory->main_ion_fd[cnt]);
 ION_OPEN_FAILED:
   return -1;
+}
+
+int QCameraHardwareInterface::cache_ops(struct ion_flush_data *cache_data,
+  int type)
+{
+  int ion_fd, rc = 0;
+
+  ion_fd = open("/dev/ion", O_RDONLY);
+  if (ion_fd <= 0) {
+    ALOGE("%s: ION device open failed\n", __func__);
+    return -ENXIO;
+  } else {
+    rc = ioctl(ion_fd, type, cache_data);
+    if (rc < 0)
+      ALOGE("%s: Cache Invalidate failed\n", __func__);
+    else
+      ALOGV("%s: Cache OPs type(%d) success", __func__);
+    close(ion_fd);
+  }
+
+  return rc;
 }
 
 int QCameraHardwareInterface::deallocate_ion_memory(QCameraHalHeap_t *p_camera_memory, int cnt)
@@ -2355,10 +2290,12 @@ int QCameraHardwareInterface::initHeapMem( QCameraHalHeap_t *heap,
             frame->path = path;
             frame->cbcr_off =  planes[0]+heap->cbcr_offset;
             frame->y_off =  heap->y_offset;
+            frame->fd_data = heap->ion_info_fd[i];
+            frame->ion_alloc = heap->alloc[i];
             ALOGD("%s: Buffer idx: %d  addr: %x fd: %d phy_offset: %d"
                  "cbcr_off: %d y_off: %d frame_len: %d", __func__,
                  i, (unsigned int)frame->buffer, frame->fd,
-                 frame->phy_offset, cbcr_off, y_off, buf_len);
+                 frame->phy_offset, cbcr_off, y_off, frame->ion_alloc.len);
 
             buf_def->buf.mp[i].frame = *frame;
             buf_def->buf.mp[i].frame_offset = 0;

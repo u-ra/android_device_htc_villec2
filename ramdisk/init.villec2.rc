@@ -73,7 +73,7 @@ on emmc-fs
     chmod 0660                /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/module/htc_bdaddress/parameters/bdaddress
     setprop ro.bt.bdaddr_path /sys/module/htc_bdaddress/parameters/bdaddress
-
+    symlink /system/vendor/lib /vendor/lib
 
 on post-fs-data
     # double check the perms and set owner
@@ -115,6 +115,7 @@ on boot
 
     # radio
     mkdir /data/radio 2770 radio radio
+    mkdir /dev/radio 777 radio radio
 
     # liblights
     chown system system /sys/class/leds/green/brightness

@@ -35,13 +35,34 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
+# QCOM Display
+PRODUCT_PACKAGES += \
+    copybit.msm8660 \
+    gralloc.msm8660 \
+    hwcomposer.msm8660
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio_policy.msm8660 \
-    audio_policy.conf \
     audio.primary.msm8660 \
-    libaudioutils
+    audio.usb.default \
+    audio_policy.conf
+
+# Omx
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libmm-omxcore \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libstagefrighthw \
+    libOmxQcelp13Enc \
+    libOmxEvrcEnc \
+    libOmxAmrEnc
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -51,41 +72,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
 
-# Graphics
-PRODUCT_PACKAGES += \
-    copybit.msm8660 \
-    gralloc.msm8660 \
-    hwcomposer.msm8660 \
-    lights.msm8660 \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libqdutils \
-    libtilerenderer
-
-# OMX
-PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
-    libI420colorconvert \
-    libmm-omxcore \
-    libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libstagefrighthw
 
 # HDMI
 PRODUCT_PACKAGES += \
     hdmid
 
-# Torch
+# Misc
 PRODUCT_PACKAGES += \
-    Torch
+    com.android.future.usb.accessory \
+    lights.msm8660
 
-# USB
+# Live Wallpapers
 PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    librs_jni
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -100,6 +102,14 @@ PRODUCT_COPY_FILES += \
 # Thermal configuration
 PRODUCT_COPY_FILES += \
     device/htc/villec2/configs/thermald.conf:system/etc/thermald.conf
+
+# for bugmailer
+ifneq ($(TARGET_BUILD_VARIANT),user)
+    PRODUCT_PACKAGES += send_bug
+    PRODUCT_COPY_FILES += \
+        system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
+        system/extras/bugmailer/send_bug:system/bin/send_bug
+endif
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
